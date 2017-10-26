@@ -1,0 +1,23 @@
+{
+  "name": "amazon-hq2-proposals",
+  "version": "1.0.0",
+  "description": "A static site listing all the Amazon HQ2 proposals we've found.",
+  "main": "index.html",
+  "scripts": {
+    "build": "rm -rf css && mkdir css && ./node_modules/node-sass/bin/node-sass scss/amazon-hq2-propsals.scss > css/amazon-hq2-propsals.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reflect/amazon-hq2-proposals.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reflect/amazon-hq2-proposals/issues"
+  },
+  "homepage": "https://github.com/reflect/amazon-hq2-proposals#readme",
+  "devDependencies": {
+    "node-sass": "^4.5.3"
+  }
+}

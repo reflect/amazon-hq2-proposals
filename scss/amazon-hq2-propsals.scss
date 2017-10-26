@@ -1,0 +1,54 @@
+$amazon-orange: #ff9900;
+
+$jumbotron-bg:      lighten($amazon-orange, 20%);
+$brand-primary:     $amazon-orange;
+$border-radius-lg:  0;
+
+$footer-height: 60px;
+
+@import "bootstrap/bootstrap";
+
+//
+// Customizations to Bootstrap.
+nav {
+  background-color: $amazon-orange;
+
+  a.navbar-brand {
+    color: $black;
+  }
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: $footer-height;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: $footer-height;
+  line-height: $footer-height; /* Vertically center the text there */
+  background-color: #f5f5f5;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+//
+//body > .container {
+//  padding: $footer-height 15px 0;
+//}
+//
+//.footer > .container {
+//  padding-right: 15px;
+//  padding-left: 15px;
+//}

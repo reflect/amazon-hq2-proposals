@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="./css/amazon-hq2-propsals.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+window.PROPOSALS = [
+  {
+    "location": "Portland, OR",
+    "country": "United States",
+    "href": "https://greaterportlandinc.com/assets/documents/greaterportlandinc-amazonhq2.pdf"
+  }
+];
+    </script>
+  </head>
+
+  <body lang="en">
+
+    <nav class="navbar">
+      <a class="navbar-brand" href="#">Amazon HQ2 Proposals</a>
+
+      <div class="collapse navbar-collapse">
+        <!--
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+        -->
+      </div>
+    </nav>
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-3">Amazon HQ2 Propsals</h1>
+        <h2>All the HQ2 proposals we could find on the internet.</h2>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <table class="table table-hover" id="proposals">
+          <thead class="thead-inverse">
+            <tr>
+              <th>Region</th>
+              <th>Country</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody id="proposals-tbody">
+          </tbody>
+        </table>
+      </div>
+     </div>
+
+     <footer class="footer">
+      <div class="container">
+        <span class="text-muted">All content property of it's respective owners.</span>
+      </div>
+    </footer>
+  </body>
+
+  <script type="text/javascript">
+function renderProposalsTable(tbody, props) {
+  var len = props.length,
+      $tbody = $(tbody);
+
+  for (var i = 0; i < len; i++) {
+    var prop = props[i],
+        $tr = $('<tr/>'),
+        $locationTd = $('<td/>'),
+        $countryTd = $('<td/>'),
+        $linkTd = $('<td align="right"/>'),
+        $link = $('<a target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i></a>');
+
+    $link.attr('href', prop.href);
+
+    $locationTd.text(prop.location);
+    $countryTd.text(prop.country);
+    $linkTd.append($link);
+
+    $tr.append($locationTd);
+    $tr.append($countryTd);
+    $tr.append($linkTd);
+
+    $tbody.append($tr);
+
+    console.log('bley');
+  }
+}
+
+$(function() {
+  renderProposalsTable(document.getElementById('proposals-tbody'), window.PROPOSALS);
+});
+  </script>
+</html>
