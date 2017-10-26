@@ -5992,6 +5992,9 @@ nav {
   nav a.navbar-brand {
     color: #000; }
 
+div#my-map {
+  height: 480px; }
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -6011,7 +6014,3 @@ body {
   line-height: 60px;
   /* Vertically center the text there */
   background-color: #f5f5f5; }
-
-/* Custom page CSS
--------------------------------------------------- */
-/* Not required for template or sticky footer method. */

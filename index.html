@@ -1,17 +1,43 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- Bootstrap JS and dependencies -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
     <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+    <!-- /Bootstrap JS and dependencies -->
+
+    <!-- Our CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="./css/amazon-hq2-propsals.css" rel="stylesheet" />
+    <!-- /Our CSS -->
+
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
+    <!-- /Leaflet -->
 
     <script type="text/javascript">
+/**
+ * To add a new proposal to the view, simply create a new object that contains
+ * the location, the country, the lat/long of the location, and a link to the
+ * proposal.
+ *
+ * Example:
+ *
+ *   {
+ *     "location": "Portland, OR",
+ *     "country": "United States",
+ *     "loc": [45.5231, -122.6765],
+ *     "href": "https://greaterportlandinc.com/assets/documents/greaterportlandinc-amazonhq2.pdf"
+ *   }
+ *
+ */
 window.PROPOSALS = [
   {
     "location": "Portland, OR",
     "country": "United States",
+    "loc": [45.5231, -122.6765],
     "href": "https://greaterportlandinc.com/assets/documents/greaterportlandinc-amazonhq2.pdf"
   }
 ];
@@ -36,8 +62,7 @@ window.PROPOSALS = [
 
     <div class="jumbotron">
       <div class="container">
-        <h1 class="display-3">Amazon HQ2 Propsals</h1>
-        <h2>All the HQ2 proposals we could find on the internet.</h2>
+        <div id="my-map"></div>
       </div>
     </div>
 
@@ -66,9 +91,27 @@ window.PROPOSALS = [
   </body>
 
   <script type="text/javascript">
-function renderProposalsTable(tbody, props) {
+var slug = function(str) {
+  return str.toLowerCase().replace(/[^a-zA-Z0-0]/, '-').replace(/-+/, '-');
+}
+
+var createId = function(prop) {
+  return slug(prop.country) + '-' + slug(prop.location);
+}
+
+function renderPropsals(tbody, props) {
   var len = props.length,
       $tbody = $(tbody);
+
+  // Stupp for the map.
+  var mymap = L.map('my-map').setView([39.50,-98.35], 4);
+
+  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: 'pk.eyJ1IjoiYnJhZGhlIiwiYSI6ImNpamZ5YzNpYjAwMzJ1NG01OTh1NmYwZGkifQ.xnt-BjEXZZ5vw3gryLfMpA'
+  }).addTo(mymap);
 
   for (var i = 0; i < len; i++) {
     var prop = props[i],
@@ -84,18 +127,27 @@ function renderProposalsTable(tbody, props) {
     $countryTd.text(prop.country);
     $linkTd.append($link);
 
+    var id = createId(prop);
+    $tr.attr('id', id);
     $tr.append($locationTd);
     $tr.append($countryTd);
     $tr.append($linkTd);
 
     $tbody.append($tr);
 
-    console.log('bley');
+    var marker = L.marker(prop.loc).addTo(mymap);
+    marker.on('click', function() {
+      window.location.hash = id;
+
+      // Highlight this row in the table too
+      $tr.siblings('.table-active').removeClass('table-active');
+      $tr.addClass('table-active');
+    });
   }
 }
 
 $(function() {
-  renderProposalsTable(document.getElementById('proposals-tbody'), window.PROPOSALS);
+  renderPropsals(document.getElementById('proposals-tbody'), window.PROPOSALS);
 });
   </script>
 </html>

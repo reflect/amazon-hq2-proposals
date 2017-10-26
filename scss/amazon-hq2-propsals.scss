@@ -4,6 +4,7 @@ $jumbotron-bg:      lighten($amazon-orange, 20%);
 $brand-primary:     $amazon-orange;
 $border-radius-lg:  0;
 
+$map-height:    480px;
 $footer-height: 60px;
 
 @import "bootstrap/bootstrap";
@@ -16,6 +17,10 @@ nav {
   a.navbar-brand {
     color: $black;
   }
+}
+
+div#my-map {
+  height: $map-height;
 }
 
 /* Sticky footer styles
@@ -38,17 +43,3 @@ body {
   line-height: $footer-height; /* Vertically center the text there */
   background-color: #f5f5f5;
 }
-
-
-/* Custom page CSS
--------------------------------------------------- */
-/* Not required for template or sticky footer method. */
-//
-//body > .container {
-//  padding: $footer-height 15px 0;
-//}
-//
-//.footer > .container {
-//  padding-right: 15px;
-//  padding-left: 15px;
-//}
