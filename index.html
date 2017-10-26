@@ -29,7 +29,10 @@
  *     "location": "Portland, OR",
  *     "country": "United States",
  *     "loc": [45.5231, -122.6765],
- *     "href": "https://greaterportlandinc.com/assets/documents/greaterportlandinc-amazonhq2.pdf"
+ *     "pdf": "https://greaterportlandinc.com/assets/documents/greaterportlandinc-amazonhq2.pdf",
+ *     "video": "",
+ *     "website": "",
+ *     "proposed_locations": ""
  *   }
  *
  */
@@ -38,7 +41,19 @@ window.PROPOSALS = [
     "location": "Portland, OR",
     "country": "United States",
     "loc": [45.5231, -122.6765],
-    "href": "https://greaterportlandinc.com/assets/documents/greaterportlandinc-amazonhq2.pdf"
+    "pdf": "https://greaterportlandinc.com/assets/documents/greaterportlandinc-amazonhq2.pdf",
+    "video": "",
+    "website": "",
+    "proposed_locations": ""
+  },
+  {
+    "location": "Toronto",
+    "country": "Canada",
+    "loc": [43.6532, -79.3832],
+    "pdf": "https://s3.ca-central-1.amazonaws.com/torontoglobal/TorontoRegionResponsetoAmazonHQ2RFP_PD.pdf",
+    "video": "",
+    "website": "",
+    "proposed_locations": ""
   }
 ];
     </script>
@@ -99,6 +114,26 @@ var createId = function(prop) {
   return slug(prop.country) + '-' + slug(prop.location);
 }
 
+var createLink = function(fa, href) {
+  var span = $('<span class="resource" />'),
+      icon = $('<i class="fa" aria-hidden="true" />');
+
+  icon.addClass(fa);
+
+  if (href != "") {
+    var link = $('<a target="_blank" />');
+    link.attr("href", href)
+    link.append(icon);
+
+    span.append(link);
+  } else {
+    icon.addClass('icon-disabled');
+    span.append(icon);
+  }
+
+  return span;
+}
+
 function renderPropsals(tbody, props) {
   var len = props.length,
       $tbody = $(tbody);
@@ -118,14 +153,14 @@ function renderPropsals(tbody, props) {
         $tr = $('<tr/>'),
         $locationTd = $('<td/>'),
         $countryTd = $('<td/>'),
-        $linkTd = $('<td align="right"/>'),
-        $link = $('<a target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i></a>');
-
-    $link.attr('href', prop.href);
+        $linkTd = $('<td align="right"/>');
 
     $locationTd.text(prop.location);
     $countryTd.text(prop.country);
-    $linkTd.append($link);
+    $linkTd.append(createLink('fa-file-pdf-o', prop.pdf));
+    $linkTd.append(createLink('fa-video-camera', prop.video));
+    $linkTd.append(createLink('fa-location-arrow', prop.website));
+    $linkTd.append(createLink('fa-map-marker', prop.website));
 
     var id = createId(prop);
     $tr.attr('id', id);

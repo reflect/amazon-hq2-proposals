@@ -43,3 +43,11 @@ body {
   line-height: $footer-height; /* Vertically center the text there */
   background-color: #f5f5f5;
 }
+
+.resource {
+  .icon-disabled {
+    color: lighten($gray-light, 30%);
+  }
+
+  margin-left: 10px;
+}
