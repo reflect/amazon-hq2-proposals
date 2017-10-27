@@ -32,7 +32,7 @@
  *     "pdf": "https://greaterportlandinc.com/assets/documents/greaterportlandinc-amazonhq2.pdf",
  *     "video": "",
  *     "website": "",
- *     "proposed_locations": ""
+ *     "locations": ""
  *   }
  *
  */
@@ -44,7 +44,7 @@ window.PROPOSALS = [
     "pdf": "https://greaterportlandinc.com/assets/documents/greaterportlandinc-amazonhq2.pdf",
     "video": "",
     "website": "",
-    "proposed_locations": ""
+    "locations": ""
   },
   {
     "location": "Toronto",
@@ -53,7 +53,16 @@ window.PROPOSALS = [
     "pdf": "https://s3.ca-central-1.amazonaws.com/torontoglobal/TorontoRegionResponsetoAmazonHQ2RFP_PD.pdf",
     "video": "",
     "website": "",
-    "proposed_locations": ""
+    "locations": ""
+  },
+  {
+    "location": "Pittsburgh, PA",
+    "country": "United States",
+    "loc": [40.4406, -79.9959],
+    "pdf": "",
+    "video": "https://www.youtube.com/watch?v=XEw2Ky5XxDM",
+    "website": "https://hqpittsburgh.com/",
+    "locations": ""
   }
 ];
     </script>
@@ -160,7 +169,7 @@ function renderPropsals(tbody, props) {
     $linkTd.append(createLink('fa-file-pdf-o', prop.pdf));
     $linkTd.append(createLink('fa-video-camera', prop.video));
     $linkTd.append(createLink('fa-location-arrow', prop.website));
-    $linkTd.append(createLink('fa-map-marker', prop.website));
+    $linkTd.append(createLink('fa-map-marker', prop.locations));
 
     var id = createId(prop);
     $tr.attr('id', id);
