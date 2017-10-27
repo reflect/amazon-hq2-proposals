@@ -1,8 +1,21 @@
 .info {
   background: rgba(255, 146, 0, .5);
-  padding: 10px;
+  padding: 20px;
   border-radius: 5px;
   margin-bottom: 1rem;
+}
+
+.info p {
+  margin-bottom: 0;
+}
+
+.info a {
+  color: #0f6aaa;
+}
+
+.info a:active,
+.info a:hover {
+  color: #09446d;
 }
 
 
