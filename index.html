@@ -575,19 +575,18 @@ var createId = function(prop) {
 
 var createLink = function(fa, href) {
   var span = $('<span class="resource" />'),
+      link = $('<a class="btn btn-sm" target="_blank" />'),
       icon = $('<i class="fa" aria-hidden="true" />');
 
   icon.addClass(fa);
+  link.append(icon);
+  span.append(link);
 
   if (href != "") {
-    var link = $('<a target="_blank" />');
+    link.addClass('btn-outline-primary');
     link.attr("href", href)
-    link.append(icon);
-
-    span.append(link);
   } else {
-    icon.addClass('icon-disabled');
-    span.append(icon);
+    link.addClass('btn-outline-secondary disabled');
   }
 
   return span;
