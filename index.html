@@ -3,10 +3,12 @@
   <head>
     <title>Amazon HQ2 Proposals</title>
 
+    <meta charset="UTF-8">
+
     <!-- Bootstrap JS and dependencies -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
     <!-- /Bootstrap JS and dependencies -->
 
     <!-- Our CSS -->
@@ -15,11 +17,11 @@
     <!-- /Our CSS -->
 
     <!-- Leaflet -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
     <!-- /Leaflet -->
 
-    <script type="text/javascript">
+    <script>
 /**
  * To add a new proposal to the view, simply create a new object that contains
  * the location, the country, the lat/long of the location, and a link to the
@@ -564,7 +566,7 @@ window.PROPOSALS = [
     </footer>
   </body>
 
-  <script type="text/javascript">
+  <script async>
 var slug = function(str) {
   return str.toLowerCase().replace(/[^a-zA-Z0-0]/g, '-').replace(/-+/, '-');
 }
