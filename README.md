@@ -22,3 +22,14 @@ data you found about said proposal and open a PR to get it published.
   "locations": ""
 }
 ```
+
+## Development
+
+Development requires node and NPM. To setup your environment, just run `npm
+install`. The only real "build" step is to compile the CSS, which can be done
+with `npm run-script build`.
+
+## Contributors
+
+* [Sebastian Prokuski](https://github.com/sprokusk)
+* [Brad Heller](https://github.com/bradhe)
