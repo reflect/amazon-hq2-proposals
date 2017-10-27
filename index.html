@@ -575,7 +575,7 @@ var createId = function(prop) {
   return slug(prop.country) + '-' + slug(prop.region);
 }
 
-var createLink = function(fa, href) {
+var createLink = function(fa, href, title) {
   var span = $('<span class="resource" />'),
       link = $('<a class="btn btn-sm" target="_blank" />'),
       icon = $('<i class="fa" aria-hidden="true" />');
@@ -583,6 +583,7 @@ var createLink = function(fa, href) {
   icon.addClass(fa);
   link.append(icon);
   span.append(link);
+  link.attr('title', title);
 
   if (href != "") {
     link.addClass('btn-outline-primary');
@@ -619,10 +620,10 @@ function renderPropsals(tbody, props) {
     $regionTd.text(prop.region);
     $stateTd.text(prop.state);
     $countryTd.text(prop.country);
-    $linkTd.append(createLink('fa-file-pdf-o', prop.pdf));
-    $linkTd.append(createLink('fa-video-camera', prop.video));
-    $linkTd.append(createLink('fa-location-arrow', prop.website));
-    $linkTd.append(createLink('fa-map-marker', prop.locations));
+    $linkTd.append(createLink('fa-file-pdf-o', prop.pdf, 'Presentation'));
+    $linkTd.append(createLink('fa-video-camera', prop.video, 'Video'));
+    $linkTd.append(createLink('fa-location-arrow', prop.website, 'Website'));
+    $linkTd.append(createLink('fa-map-marker', prop.locations, 'Proposed Locations'));
 
     var id = createId(prop);
     $tr.attr('id', id);
