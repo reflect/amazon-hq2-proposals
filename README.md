@@ -1,6 +1,6 @@
 # Amazon HQ2 Proposals
 
-This repo contains a simpl single page app that aggregates links to all the
+This repo contains a simple single page app that aggregates links to all the
 Amazon HQ2 proposals that can be found on the internet.
 
 ## Adding a Proposal
