@@ -33,3 +33,4 @@ with `npm run-script build`.
 
 * [Sebastian Prokuski](https://github.com/sprokusk)
 * [Brad Heller](https://github.com/bradhe)
+* [Daniel Levine](https://github.com/dlevine815)
