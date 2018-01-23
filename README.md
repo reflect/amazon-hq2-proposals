@@ -3,6 +3,8 @@
 This repo contains a simple single page app that aggregates links to all the
 Amazon HQ2 proposals that can be found on the internet.
 
+[![The map](./images/map.png)](https://reflect.github.io/amazon-hq2-proposals/)
+
 ## Adding a Proposal
 
 You found a proposal somewhere online? This is *great* news! :tada:
