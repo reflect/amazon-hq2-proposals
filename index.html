@@ -18,7 +18,9 @@
 
     <!-- Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css">
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.min.js"></script>
     <!-- /Leaflet -->
 
     <script>
@@ -50,7 +52,8 @@ window.PROPOSALS = [
     "pdf": "",
     "video": "https://www.youtube.com/watch?v=LpvlxV8PUDA",
     "website": "",
-    "locations": ""
+    "locations": "",
+    "short_list": true
   },
   {
     "region": "Boston",
@@ -60,7 +63,8 @@ window.PROPOSALS = [
     "pdf": "https://www.bostonglobe.com/metro/2017/10/19/read-boston-full-bid-amazon/gmlG1jBfH2aGTftHNcHq0M/story.html",
     "video": "https://www.youtube.com/watch?v=GryWPJYtVMY",
     "website": "https://amazon.boston.gov/",
-    "locations": ""
+    "locations": "",
+    "short_list": true
   },
   {
     "region": "Buffalo - Rochester",
@@ -110,7 +114,8 @@ window.PROPOSALS = [
     "pdf": "",
     "video": "",
     "website": "",
-    "locations": "https://chicago.curbed.com/2017/10/23/16512138/chicago-amazon-hq2-bid"
+    "locations": "https://chicago.curbed.com/2017/10/23/16512138/chicago-amazon-hq2-bid",
+    "short_list": true
   },
   {
     "region": "Chula Vista",
@@ -140,7 +145,8 @@ window.PROPOSALS = [
     "pdf": "",
     "video": "https://www.youtube.com/watch?v=BQ2qtQ4OS2k",
     "website": "",
-    "locations": "https://media.bizj.us/view/img/10645248/dfwamazonmap.pdf"
+    "locations": "https://media.bizj.us/view/img/10645248/dfwamazonmap.pdf",
+    "short_list": true
   },
   {
     "region": "Danbury",
@@ -260,7 +266,8 @@ window.PROPOSALS = [
     "pdf": "",
     "video": "",
     "website": "",
-    "locations": "https://www.dmagazine.com/wp-content/uploads/2017/09/Amazon-HQ2_Expo-Park_Proposal.pdf"
+    "locations": "https://www.dmagazine.com/wp-content/uploads/2017/09/Amazon-HQ2_Expo-Park_Proposal.pdf",
+    "short_list": true
   },
   {
     "region": "Lower Merrimack Valley",
@@ -310,7 +317,8 @@ window.PROPOSALS = [
     "pdf": "https://www.dropbox.com/s/omgt5ywmgzundkv/Amazon%20Deck%20for%20Press%20-%2010.18.2017.pdf?dl=0&utm_source=Press+Release&utm_campaign=5db591fe9c-2017_10_18_NYC_Submits_Amazon_Proposal_PA&utm_medium=email&utm_term=0_b804b7ba34-5db591fe9c-102476565",
     "video": "",
     "website": "",
-    "locations": ""
+    "locations": "",
+    "short_list": true
   },
   {
     "region": "Newark",
@@ -320,7 +328,8 @@ window.PROPOSALS = [
     "pdf": "",
     "video": "https://www.youtube.com/watch?v=Gj43fNo4Xes",
     "website": "",
-    "locations": ""
+    "locations": "",
+    "short_list": true
   },
   {
     "region": "Philadelphia",
@@ -330,7 +339,8 @@ window.PROPOSALS = [
     "pdf": "",
     "video": "https://www.youtube.com/watch?v=feFPZXgF9ts",
     "website": "https://public.philadelphiadelivers.com/",
-    "locations": ""
+    "locations": "",
+    "short_list": true
   },
   {
     "region": "Pittsburgh",
@@ -340,7 +350,8 @@ window.PROPOSALS = [
     "pdf": "",
     "video": "https://www.youtube.com/watch?v=XEw2Ky5XxDM",
     "website": "https://hqpittsburgh.com/",
-    "locations": ""
+    "locations": "",
+    "short_list": true
   },
   {
     "region": "Portland",
@@ -420,7 +431,8 @@ window.PROPOSALS = [
     "pdf": "https://s3.ca-central-1.amazonaws.com/torontoglobal/TorontoRegionResponsetoAmazonHQ2RFP_PD.pdf",
     "video": "",
     "website": "",
-    "locations": ""
+    "locations": "",
+    "short_list": true
   },
   {
     "region": "Washington, DC",
@@ -430,7 +442,8 @@ window.PROPOSALS = [
     "pdf": "",
     "video": "https://www.youtube.com/watch?v=7TG_Ror5LRE",
     "website": "",
-    "locations": "http://www.alexawhydc.com/"
+    "locations": "http://www.alexawhydc.com/",
+    "short_list": true
   },
   {
     "region": "Weymouth",
@@ -577,6 +590,19 @@ window.PROPOSALS = [
   </body>
 
   <script async>
+L.AwesomeMarkers.Icon.prototype.options.prefix = 'fnt';
+var RED_MARKER = L.AwesomeMarkers.icon({
+  prefix: 'fa',
+  icon: 'check',
+  markerColor: 'orange'
+});
+
+var BLUE_MARKER = L.AwesomeMarkers.icon({
+  prefix: 'fa',
+  icon: 'ban',
+  markerColor: 'gray'
+});
+
 var slug = function(str) {
   return str.toLowerCase().replace(/[^a-zA-Z0-0]/g, '-').replace(/-+/, '-');
 }
@@ -644,7 +670,8 @@ function renderPropsals(tbody, props) {
 
     $tbody.append($tr);
 
-    var marker = L.marker(prop.loc).addTo(mymap);
+    var marker = L.marker(prop.loc, { icon: prop["short_list"] ? RED_MARKER : BLUE_MARKER });
+    marker.addTo(mymap);
 
     (function(index){
       marker.on('click', function() {
